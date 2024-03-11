@@ -1,15 +1,14 @@
 import sys
 from PyQt5.QtWidgets import QApplication, QMainWindow, QFileDialog, QMessageBox
-from PyQt5.uic import loadUi
+import mainui
 import os
 import pandas as pd
 
-class MainWindow(QMainWindow):
+class MainWindow(QMainWindow, mainui.Ui_MainWindow):
     def __init__(self):
         super().__init__()
         current_dir = os.path.dirname(os.path.abspath(__file__))
-        ui_file = os.path.join(current_dir, "untitled.ui")
-        loadUi(ui_file, self)  # Загружаем файл интерфейса
+        self.setupUi(self)
 
         # Привязываем обработчики событий к кнопкам
         self.pushButton_main_select.clicked.connect(self.open_file_dialog_main)
